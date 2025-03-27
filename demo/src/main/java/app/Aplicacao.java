@@ -10,9 +10,7 @@ public class Aplicacao {
     public static void main(String[] args) {
 
         staticFiles.location("/public");
-        port(4567);
-
-        get("/oi", (request, response) -> "Oi Mundo!");
+        port(8080);
 
         post("/pessoa", (request, response) -> pessoaService.add(request, response));
 

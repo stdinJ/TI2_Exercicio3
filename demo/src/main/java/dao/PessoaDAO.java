@@ -16,7 +16,7 @@ public class PessoaDAO {
         String driverName = "org.postgresql.Driver";
         String serverName = "localhost";
         String mydatabase = "teste";
-        int porta = 4567;
+        int porta = 8080;
         String url = "jdbc:postgresql://" + serverName + ":" + porta + "/" + mydatabase;
         String username = "ti2cc";
         String password = "ti@cc";
