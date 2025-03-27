@@ -23,7 +23,7 @@ public class PessoaService {
         String email = request.queryParams("email");
 
         Pessoa pessoa = new Pessoa(id, nome, idade, cpf, email);
-        pessoaDAO.inserirPessoa(pessoa);
+        pessoaDAO.update(pessoa);
 
         response.status(201);
         return "Pessoa " + id + " inserida com sucesso!";
@@ -33,7 +33,7 @@ public class PessoaService {
     public Object get(Request request, Response response) {
         int id = Integer.parseInt(request.params(":id"));
 
-        Pessoa pessoa = pessoaDAO.getPessoa(id);
+        Pessoa pessoa = pessoaDAO.get(id);
 
         if (pessoa != null) {
             response.header("Content-Type", "application/xml");
@@ -56,7 +56,7 @@ public class PessoaService {
     public Object update(Request request, Response response) {
         int id = Integer.parseInt(request.params(":id"));
 
-        Pessoa pessoa = pessoaDAO.getPessoa(id);
+        Pessoa pessoa = pessoaDAO.get(id);
 
         if (pessoa != null) {
             pessoa.setNome(request.queryParams("nome"));
@@ -64,7 +64,7 @@ public class PessoaService {
             pessoa.setCpf(request.queryParams("cpf"));
             pessoa.setEmail(request.queryParams("email"));
 
-            pessoaDAO.atualizarPessoa(pessoa);
+            pessoaDAO.update(pessoa);
 
             response.status(200);
             return "Pessoa " + id + " atualizada com sucesso!";
@@ -78,7 +78,7 @@ public class PessoaService {
     public Object remove(Request request, Response response) {
         int id = Integer.parseInt(request.params(":id"));
 
-        boolean status = pessoaDAO.excluirPessoa(id);
+        boolean status = pessoaDAO.delete(id);
 
         if (status) {
             response.status(200);
@@ -92,7 +92,7 @@ public class PessoaService {
     // Obtém todas as pessoas
     public Object getAll(Request request, Response response) {
         StringBuffer returnValue = new StringBuffer("<pessoas type=\"array\">");
-        for (Pessoa pessoa : pessoaDAO.getPessoas()) {
+        for (Pessoa pessoa : pessoaDAO.getAll()) {
             returnValue.append("\n<pessoa>\n" +
                     "\t<id>" + pessoa.getId() + "</id>\n" +
                     "\t<nome>" + pessoa.getNome() + "</nome>\n" +
