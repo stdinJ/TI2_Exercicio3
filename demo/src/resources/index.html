@@ -1,0 +1,155 @@
+<html lang="pt-br">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Pessoas</title>
+
+  <script type="text/javascript">
+    function addIdToPath(form_name, base_url) {
+      var your_form = document.getElementById(form_name);
+      var id = your_form.elements.namedItem("id").value;
+      your_form.action = base_url + id;
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Controle de Colaboradores</h1>
+    
+    <section class="secao">
+      <h2>Inserir Pessoa</h2>
+      <form action="http://localhost:6789/pessoa" method="post" id="form-add">
+        <input type="text" name="nome" placeholder="Nome">
+        <input type="text" name="idade" placeholder="Idade">
+        <input type="text" name="cpf" placeholder="CPF">
+        <input type="text" name="email" placeholder="E-mail">
+        <input type="submit" value="Cadastrar">
+      </form>
+    </section>
+	
+    <section class="secao">
+      <h2>Atualizar Pessoa</h2>
+      <form onsubmit="addIdToPath('form-update', 'http://localhost:6789/pessoa/update/')" method="post" id="form-update">
+        <input type="text" id="id" name="id" placeholder="Código da pessoa...">
+        <input type="text" name="nome" placeholder="Novo Nome">
+        <input type="text" name="idade" placeholder="Nova Idade">
+        <input type="text" name="cpf" placeholder="Novo CPF">
+        <input type="text" name="email" placeholder="Novo E-mail">
+        <input type="submit" value="Atualizar">
+      </form>
+    </section>
+	
+    <section class="secao">
+      <h2>Remover Pessoa</h2>
+      <form onsubmit="addIdToPath('form-delete', 'http://localhost:6789/pessoa/delete/')" method="get" id="form-delete">
+        <input type="text" id="id" placeholder="Código da pessoa...">
+        <input type="submit" value="Remover" class="input--remove__style">
+      </form>
+    </section>
+
+    <section class="secao">
+      <h2>Visualizar Pessoa</h2>
+      <form onsubmit="addIdToPath('form-get', 'http://localhost:6789/pessoa/')" method="get" id="form-get">
+        <input type="text" id="id" placeholder="Código da pessoa...">
+        <input type="submit" value="Consultar">
+      </form>
+    </section>
+    
+    <section class="secao">
+      <h2>Listar Pessoas</h2>
+      <form action="http://localhost:6789/pessoa" method="get" id="form-all">
+        <input type="submit" value="Ver Todas as Pessoas">
+      </form>
+    </section>
+  </div>
+</body>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F0F4F8; /* Cor de fundo clara */
+    color: #333; /* Cor do texto escuro */
+  }
+
+  h1 {
+    text-align: center;
+    color: #0277BD; /* Azul claro */
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #FFFFFF; /* Cor de fundo branca */
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .secao {
+    margin-bottom: 30px;
+  }
+
+  .secao h2 {
+    color: #0277BD; /* Azul claro */
+    font-size: 1.8em;
+    border-bottom: 2px solid #0277BD;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #A7C7E7; /* Azul claro nas bordas */
+    border-radius: 8px;
+    background-color: #F1F8FF; /* Fundo claro */
+    color: #333;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #0277BD; /* Azul claro */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #01579B; /* Azul escuro no hover */
+  }
+
+  .input--remove__style {
+    background-color: #B71C1C; /* Vermelho */
+  }
+
+  .input--remove__style:hover {
+    background-color: #D32F2F;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #0277BD; /* Azul claro quando focado */
+  }
+
+  form {
+    margin-bottom: 20px;
+  }
+</style>
+
+</html>
